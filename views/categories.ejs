@@ -1,0 +1,28 @@
+<%- include('./layouts/header') %>
+<main>
+    <%- include('./layouts/carousel') %>
+
+    <h2 class="d-flex align-items-center justify-content-center m-5"> Products </h2>
+
+      <% products.forEach(function(p){ %>
+        <div class="d-flex">
+              <div class="row " >
+                  <div class="shadow-sm col-sm-12 m-3">
+                          <img src=" <%= p.img %>" class="rounded img-fluid" alt="...">
+                      
+                          <div class="row d-flex justify-content-center flex-column align-items-center"> 
+                              <h5 class="fw-normal col-6"> <%= p.title %></h2>
+                              <p class="col-6"> NGN <%= parseFloat(p.price).toFixed(2) %></p>
+                              <p class="col-12 d-flex"><a class="btn btn-primary col-12" href="#">add to cart</a></p>
+                           </div>
+                     
+              </div><!-- /.row -->
+            </div>
+      <% }); %>
+     
+  
+    </div><!-- /.container -->
+  
+
+</main>
+<%- include('./layouts/footer') %>
