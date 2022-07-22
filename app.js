@@ -3,6 +3,8 @@ let bodyParser = require('body-parser');
 let session = require('express-session');
 const app = express();
 
+const expressValidator = require('express-validator');
+
 const passport = require('passport');
 // setup ejs view engine
 let path = require('path');
@@ -28,7 +30,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.use(express.json());
-
+app.use(expressValidator());
 /// express sessions
 app.use(session({
     secret: 'some deep deep deep secret',
@@ -57,6 +59,9 @@ app.get('*', function(req,res,next) {
    next();
 });
 
+// Set global errors variable
+app.locals.errors = null;
+
 // Set routes 
 const products = require('./routes/product.js');
 const cart = require('./routes/cart.js');
@@ -65,10 +70,6 @@ const users = require('./routes/users.js');;
 app.use('/', products);
 app.use('/cart', cart);
 app.use('/users', users);
-
-app.get('*', function(req, res){
-    res.render('404');
-  });
 
 // start server
 let PORT = process.env.PORT || 5000;

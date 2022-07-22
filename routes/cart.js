@@ -61,6 +61,7 @@ router.get('/checkout', function (req, res) {
         delete req.session.cart;
         res.redirect('/cart/checkout');
     } else {
+        console.log(req.session.cart);
         res.render('checkout', {
             title: 'Checkout',
             cart: req.session.cart
