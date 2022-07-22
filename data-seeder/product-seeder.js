@@ -80,12 +80,8 @@ console.log(`done inserting ${itemLength} ${i}`)
 
 
 mongoose
-.connect('mongodb://localhost:27017/cart-shop', 
-{
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(async() => {
+  .connect('mongodb+srv://FABULUX:grandtheft360@cluster0.ugwbb.mongodb.net/cart-shop-test?retryWrites=true&w=majority')
+ .then(async() => {
 await seeder();
 })
 .catch((err) => {

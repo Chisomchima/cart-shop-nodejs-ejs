@@ -2,6 +2,8 @@ const express = require('express');
 let bodyParser = require('body-parser');
 let session = require('express-session');
 const app = express();
+const dotenv = require("dotenv");
+dotenv.config();
 
 const expressValidator = require('express-validator');
 
@@ -14,15 +16,12 @@ app.set("view engine", "ejs");
 //Import the mongoose module
 const mongoose = require('mongoose');
 
-require('dotenv').config();
-
-mongoose.connect('mongodb://localhost:27017/cart-shop', 
-{
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => console.log("DB Connection Successfull!")).catch((err) => {
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() => console.log("DB Connection Successfull!"))
+  .catch((err) => {
     console.log(err);
-});
+  });
 
 // create application/x-www-form-urlencoded parser
 app.use(bodyParser.urlencoded({extended: false}));
@@ -53,14 +52,15 @@ require('./config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Set global errors variable
+app.locals.errors = null;
+
 app.get('*', function(req,res,next) {
    res.locals.cart = req.session.cart;
    res.locals.user = req.user || null;
    next();
 });
 
-// Set global errors variable
-app.locals.errors = null;
 
 // Set routes 
 const products = require('./routes/product.js');
