@@ -28,7 +28,7 @@ router.post('/register', function (req, res) {
     var password = req.body.password;
 
    
-    if (!name || !email || !username || !password || !password2) {
+    if (!name || !email || !username || !password) {
         res.render('register', {
             user: null,
             title: 'Register'

@@ -66,7 +66,9 @@ app.use('/', products);
 app.use('/cart', cart);
 app.use('/users', users);
 
-
+app.get('*', function(req, res){
+    res.render('404');
+  });
 
 // start server
 let PORT = process.env.PORT || 5000;
