@@ -2,6 +2,10 @@
 
 An e-commerce backend server test
 
+## Heroku Deployment
+
+`https://safe-tundra-01007.herokuapp.com/`
+
 - please view on large screen. Pleasant looking UI not intented only important functionalities.
 
 ## Project Stack
@@ -28,3 +32,4 @@ To Start Server:
 To Visit App:
 
 `localhost:5000`
+
